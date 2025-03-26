@@ -16,6 +16,10 @@
   padding: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bio-video {
@@ -59,4 +63,14 @@
   background: rgba(27, 94, 32, 1);
   transform: scale(1.05);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.error-message {
+  color: #d32f2f;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 20px;
+  background: rgba(211, 47, 47, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(211, 47, 47, 0.2);
 } 
