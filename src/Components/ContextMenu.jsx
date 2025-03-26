@@ -31,11 +31,6 @@ const ContextMenu = () => {
     setShowMenu(false);
   };
 
-  const handleVideoClick = () => {
-    navigate('/video');
-    setShowMenu(false);
-  };
-
   return (
     <div 
       className="custom-context-menu"
@@ -47,9 +42,6 @@ const ContextMenu = () => {
     >
       <div className="custom-context-menu-item" onClick={handleQuizClick}>
         Mystery❓
-      </div>
-      <div className="custom-context-menu-item" onClick={handleVideoClick}>
-        Video
       </div>
     </div>
   );

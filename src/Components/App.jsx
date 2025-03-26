@@ -13,7 +13,6 @@ import ConservationReasons from "./Components/ConservationReasons";
 import ReproductionTech from "./Components/ReproductionTech";
 import GeneticVariation from "./Components/GeneticVariation";
 import Quiz from "./Components/Quiz";
-import VideoPage from "./Components/VideoPage";
 import ContextMenu from "./Components/ContextMenu";
 import Settings from "./Components/Settings";
 import ScrollToTop from "./Components/ScrollToTop";
@@ -42,7 +41,6 @@ function App() {
               <Route path="/reproduction-tech" element={<ReproductionTech />} />
               <Route path="/genetic-variation" element={<GeneticVariation />} />
               <Route path="/quiz" element={<Quiz />} />
-              <Route path="/video" element={<VideoPage />} />
               <Route path="/settings" element={<Settings />} />
             </Routes>
           </div>
