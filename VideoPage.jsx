@@ -4,6 +4,7 @@ import './VideoPage.css';
 const VideoPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -12,21 +13,25 @@ const VideoPage = () => {
         console.error('Video error:', e);
         setError('Error loading video. Please try again later.');
       });
+
+      videoRef.current.addEventListener('loadeddata', () => {
+        setIsLoaded(true);
+      });
     }
   }, []);
 
-  const handlePlayClick = () => {
+  const handlePlayClick = async () => {
     if (videoRef.current) {
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch(error => {
-            console.error('Play error:', error);
-            setError('Error playing video. Please try again.');
-          });
+      try {
+        // Set volume to 0 initially to avoid autoplay restrictions
+        videoRef.current.volume = 0;
+        await videoRef.current.play();
+        // After successful play, restore volume
+        videoRef.current.volume = 1;
+        setIsPlaying(true);
+      } catch (error) {
+        console.error('Play error:', error);
+        setError('Error playing video. Please try again.');
       }
     }
   };
@@ -45,11 +50,12 @@ const VideoPage = () => {
               src="/biovid.mp4"
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
-              preload="metadata"
+              preload="none"
+              muted
             >
               Your browser does not support the video tag.
             </video>
-            {!isPlaying && (
+            {!isPlaying && isLoaded && (
               <div className="play-overlay" onClick={handlePlayClick}>
                 <button className="play-button">▶️ Play Video</button>
               </div>
